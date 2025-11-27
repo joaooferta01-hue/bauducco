@@ -347,85 +347,102 @@ function selCor(el){
 
 <div style="height:10px;background:#f5f5f5"></div>
 
-html
 <!-- AVALIAÇÕES -->
-<div id="avaliacoes" class="tab-content" style="border-top:1px solid e0e0e0">
+<div id="avaliacoes" class="tab-content" style="border-top:1px solid #e0e0e0">
   <!-- Cabeçalho -->
   <div style="display:flex;align-items:center;gap:8px;padding:12px 12px 6px">
     <span style="font-weight:700;font-size:18px">4.7⭐</span>
-    <span style="color:757575;font-size:14px">Avaliações do produto (88,9 mil)</span>
+    <span style="color:#757575;font-size:14px">Avaliações do produto (88,9 mil)</span>
   </div>
-  <div style="height:1px;background:e0e0e0;margin:0 12px 12px"></div>
+  <div style="height:1px;background:#e0e0e0;margin:0 12px 12px"></div>
 
   <!-- Avaliação 1 -->
-  <div class="review-item" style="padding:12px 12px 20px;border-bottom:1px solid f2f2f2">
+  <div class="review-item" data-img="cliente1.jpg" data-text="Chegou super rápido! Qualidade excelente, igual ao anúncio." style="padding:12px 12px 20px;border-bottom:1px solid #f2f2f2">
     <div class="user" style="display:flex;align-items:center;gap:8px">
       <img src="cristianeperfil.jpg" style="width:32px;height:32px;border-radius:50%"/>
       <span style="font-weight:600">Cristiane A.</span>
     </div>
-    <div class="stars" style="color:ffa500;font-size:14px;margin:6px 0">★★★★★</div>
+    <div class="stars" style="color:#ffa500;font-size:14px;margin:6px 0">★★★★★</div>
     <p style="margin:0 0 8px;font-size:14px;line-height:1.4">Chegou super rápido! Qualidade excelente, igual ao anúncio.</p>
     <div class="images">
-      <img src="cliente1.jpg" style="width:72px;height:72px;border-radius:8px;object-fit:cover;cursor:pointer" onclick="previa(this.src)">
+      <img src="cliente1.jpg" style="width:72px;height:72px;border-radius:8px;object-fit:cover;cursor:pointer" onclick="abrirGaleria(0)">
     </div>
   </div>
 
   <!-- Avaliação 2 -->
-  <div class="review-item" style="padding:12px 12px 20px;border-bottom:1px solid f2f2f2">
+  <div class="review-item" data-img="cliente2.jpg" data-text="MINHA FAMILÍA ADOROU!!!" style="padding:12px 12px 20px;border-bottom:1px solid #f2f2f2">
     <div class="user" style="display:flex;align-items:center;gap:8px">
       <img src="claudemir2.jpg" style="width:32px;height:32px;border-radius:50%"/>
       <span style="font-weight:600">Claudemir A.</span>
     </div>
-    <div class="stars" style="color:ffa500;font-size:14px;margin:6px 0">★★★★★</div>
+    <div class="stars" style="color:#ffa500;font-size:14px;margin:6px 0">★★★★★</div>
     <p style="margin:0 0 8px;font-size:14px;line-height:1.4">MINHA FAMILÍA ADOROU!!!</p>
     <div class="images">
-      <img src="cliente2.jpg" style="width:72px;height:72px;border-radius:8px;object-fit:cover;cursor:pointer" onclick="previa(this.src)">
+      <img src="cliente2.jpg" style="width:72px;height:72px;border-radius:8px;object-fit:cover;cursor:pointer" onclick="abrirGaleria(1)">
     </div>
   </div>
 
   <!-- Avaliação 3 -->
-  <div class="review-item" style="padding:12px 12px 20px">
+  <div class="review-item" data-img="cliente3.jpg" data-text="Perfeito! Melhor aquisição!!" style="padding:12px 12px 20px">
     <div class="user" style="display:flex;align-items:center;gap:8px">
       <img src="mariaperfil.jpg" style="width:32px;height:32px;border-radius:50%"/>
       <span style="font-weight:600">Maria L.</span>
     </div>
-    <div class="stars" style="color:ffa500;font-size:14px;margin:6px 0">★★★★★</div>
+    <div class="stars" style="color:#ffa500;font-size:14px;margin:6px 0">★★★★★</div>
     <p style="margin:0 0 8px;font-size:14px;line-height:1.4">Perfeito! Melhor aquisição!!</p>
     <div class="images">
-      <img src="cliente3.jpg" style="width:72px;height:72px;border-radius:8px;object-fit:cover;cursor:pointer" onclick="previa(this.src)">
+      <img src="cliente3.jpg" style="width:72px;height:72px;border-radius:8px;object-fit:cover;cursor:pointer" onclick="abrirGaleria(2)">
     </div>
   </div>
 </div>
 
-<!-- Overlay fixo para imagem -->
-<div id="zoomOverlay"
-     style="position:fixed;top:0;left:0;width:100%;height:100%;background:000;display:none;align-items:center;justify-content:center;z-index:999999">
-  <img id="zoomImg" style="max-width:90%;max-height:90%;object-fit:contain">
+<!-- OVERLAY GALERIA -->
+<div id="galeriaOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;z-index:999999;overflow:hidden">
+  <!-- Comentário no topo -->
+  <div id="galeriaTexto" style="position:absolute;top:20px;left:50%;transform:translateX(-50%);color:#fff;font-size:16px;font-weight:600;text-align:center;max-width:90%;pointer-events:none"></div>
+
+  <!-- Seta esquerda -->
+  <div onclick="mudarImg(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:40px;height:40px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;cursor:pointer;user-select:none">‹</div>
+
+  <!-- Imagem (estática) -->
+  <img id="galeriaImg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:90%;max-height:90%;object-fit:contain;pointer-events:none">
+
+  <!-- Seta direita -->
+  <div onclick="mudarImg(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:40px;height:40px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;cursor:pointer;user-select:none">›</div>
 </div>
 
 <script>
+  const items = document.querySelectorAll('.review-item');
+  let indiceAtual = 0;
   let scrollAntes = 0;
 
-  function previa(src) {
+  function abrirGaleria(i){
+    indiceAtual = i;
     scrollAntes = window.pageYOffset;
-    const ov = document.getElementById('zoomOverlay');
-    const img = document.getElementById('zoomImg');
-    img.src = src;
-    ov.style.display = 'flex';
-    // impede scroll embaixo
     document.documentElement.style.overflow = 'hidden';
+    atualizarGaleria();
+    document.getElementById('galeriaOverlay').style.display = 'block';
   }
 
-  function fechaZoom() {
-    const ov = document.getElementById('zoomOverlay');
-    ov.style.display = 'none';
+  function fechaGaleria(){
+    document.getElementById('galeriaOverlay').style.display = 'none';
     document.documentElement.style.overflow = '';
     window.scrollTo(0, scrollAntes);
   }
 
-  // fecha em qualquer toque (mouse ou touch)
-  document.getElementById('zoomOverlay').addEventListener('click', fechaZoom);
-  document.getElementById('zoomOverlay').addEventListener('touchstart', fechaZoom);
+  function mudarImg(dir){
+    indiceAtual = (indiceAtual + dir + items.length) % items.length;
+    atualizarGaleria();
+  }
+
+  function atualizarGaleria(){
+    const item = items[indiceAtual];
+    document.getElementById('galeriaImg').src = item.dataset.img;
+    document.getElementById('galeriaTexto').textContent = item.dataset.text;
+  }
+
+  // fecha em qualquer toque na overlay
+  document.getElementById('galeriaOverlay').addEventListener('click', fechaGaleria);
 </script>
 
 <!-- PERFIL DA LOJA -->
