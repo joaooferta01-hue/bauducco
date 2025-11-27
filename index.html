@@ -357,7 +357,13 @@ function selCor(el){
   <div style="height:1px;background:#e0e0e0;margin:0 12px 12px"></div>
 
   <!-- Avaliação 1 -->
-  <div class="review-item" data-img="cliente1.jpg" data-text="Chegou super rápido! Qualidade excelente, igual ao anúncio." style="padding:12px 12px 20px;border-bottom:1px solid #f2f2f2">
+  <div class="review-item"
+       data-img="cliente1.jpg"
+       data-text="Chegou super rápido! Qualidade excelente, igual ao anúncio."
+       data-perfil="cristianeperfil.jpg"
+       data-usuario="Cristiane A."
+       data-nota="5"
+       style="padding:12px 12px 20px;border-bottom:1px solid #f2f2f2">
     <div class="user" style="display:flex;align-items:center;gap:8px">
       <img src="cristianeperfil.jpg" style="width:32px;height:32px;border-radius:50%"/>
       <span style="font-weight:600">Cristiane A.</span>
@@ -370,7 +376,13 @@ function selCor(el){
   </div>
 
   <!-- Avaliação 2 -->
-  <div class="review-item" data-img="cliente2.jpg" data-text="MINHA FAMILÍA ADOROU!!!" style="padding:12px 12px 20px;border-bottom:1px solid #f2f2f2">
+  <div class="review-item"
+       data-img="cliente2.jpg"
+       data-text="MINHA FAMILÍA ADOROU!!!"
+       data-perfil="claudemir2.jpg"
+       data-usuario="Claudemir A."
+       data-nota="5"
+       style="padding:12px 12px 20px;border-bottom:1px solid #f2f2f2">
     <div class="user" style="display:flex;align-items:center;gap:8px">
       <img src="claudemir2.jpg" style="width:32px;height:32px;border-radius:50%"/>
       <span style="font-weight:600">Claudemir A.</span>
@@ -383,7 +395,13 @@ function selCor(el){
   </div>
 
   <!-- Avaliação 3 -->
-  <div class="review-item" data-img="cliente3.jpg" data-text="Perfeito! Melhor aquisição!!" style="padding:12px 12px 20px">
+  <div class="review-item"
+       data-img="cliente3.jpg"
+       data-text="Perfeito! Melhor aquisição!!"
+       data-perfil="mariaperfil.jpg"
+       data-usuario="Maria L."
+       data-nota="5"
+       style="padding:12px 12px 20px">
     <div class="user" style="display:flex;align-items:center;gap:8px">
       <img src="mariaperfil.jpg" style="width:32px;height:32px;border-radius:50%"/>
       <span style="font-weight:600">Maria L.</span>
@@ -398,17 +416,26 @@ function selCor(el){
 
 <!-- OVERLAY GALERIA -->
 <div id="galeriaOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;z-index:999999;overflow:hidden">
-  <!-- Comentário no topo -->
-  <div id="galeriaTexto" style="position:absolute;top:20px;left:50%;transform:translateX(-50%);color:#fff;font-size:16px;font-weight:600;text-align:center;max-width:90%;pointer-events:none"></div>
+  <!-- Topo: perfil + nome + estrelas + texto -->
+  <div id="galeriaTopo" style="position:absolute;top:0;left:0;width:100%;padding:20px 15px 10px;background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent);color:#fff;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+      <img id="galeriaPerfil" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #fff">
+      <div>
+        <div id="galeriaUsuario" style="font-weight:700;font-size:17px;letter-spacing:.3px"></div>
+        <div id="galeriaEstrelas" style="font-size:15px;color:#ffb400"></div>
+      </div>
+    </div>
+    <div id="galeriaTexto" style="font-size:15px;line-height:1.35;font-weight:400;max-width:100%;white-space:pre-line"></div>
+  </div>
 
   <!-- Seta esquerda -->
-  <div onclick="mudarImg(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:40px;height:40px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;cursor:pointer;user-select:none">‹</div>
+  <button id="btnEsq" onclick="mudarImg(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:48px;height:48px;background:rgba(255,255,255,.15);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;cursor:pointer;z-index:2">‹</button>
 
-  <!-- Imagem (estática) -->
-  <img id="galeriaImg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:90%;max-height:90%;object-fit:contain;pointer-events:none">
+  <!-- Imagem -->
+  <img id="galeriaImg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:90%;max-height:90%;object-fit:contain">
 
   <!-- Seta direita -->
-  <div onclick="mudarImg(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:40px;height:40px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;cursor:pointer;user-select:none">›</div>
+  <button id="btnDir" onclick="mudarImg(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:48px;height:48px;background:rgba(255,255,255,.15);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;cursor:pointer;z-index:2">›</button>
 </div>
 
 <script>
@@ -438,11 +465,16 @@ function selCor(el){
   function atualizarGaleria(){
     const item = items[indiceAtual];
     document.getElementById('galeriaImg').src = item.dataset.img;
+    document.getElementById('galeriaPerfil').src = item.dataset.perfil;
+    document.getElementById('galeriaUsuario').textContent = item.dataset.usuario;
+    document.getElementById('galeriaEstrelas').textContent = '★'.repeat(parseInt(item.dataset.nota));
     document.getElementById('galeriaTexto').textContent = item.dataset.text;
   }
 
-  // fecha em qualquer toque na overlay
-  document.getElementById('galeriaOverlay').addEventListener('click', fechaGaleria);
+  // fecha qualquer toque na área vazia
+  document.getElementById('galeriaOverlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('galeriaOverlay')) fechaGaleria();
+  });
 </script>
 
 <!-- PERFIL DA LOJA -->
