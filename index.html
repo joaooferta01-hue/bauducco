@@ -128,17 +128,96 @@ header form button[type="submit"]{
 <body>
 
 <div class="sc-hLQRIN jiNjgB">
-		<a href="#" style="width: 50%;" id="umdoistrestplink1">
-			<img src="images/Logo%20Shopee%20White-d247f0f6.webp" alt="Logo">
-		</a>
-		<div class="container_banner">
-			<span>1500 CUPONS DISPONÍVEIS</span>
-			<div class="name_cupom">
-				<h3 class="animated-heading">DAY WEEK</h3>
-				<h5><span style="font-weight: bold;">|</span> 50% OFF</h5>
-			</div>
-		</div>
-	</div>
+  <a href="#" style="width: 50%;" id="umdoistrestplink1">
+    <img src="images/Logo%20Shopee%20White-d247f0f6.webp" alt="Logo">
+  </a>
+  <div class="container_banner">
+    <span>1500 CUPONS DISPONÍVEIS</span>
+    <div class="name_cupom">
+      <h3 class="animated-heading">DAY WEEK</h3>
+      <h5><span style="font-weight: bold;">|</span> 50% OFF</h5>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .jiNjgB {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    background: linear-gradient(181deg, rgb(245, 63, 45), rgb(254, 99, 50) 87%);
+  }
+
+  .jiNjgB img {
+    width: 100%;
+  }
+
+  .jiNjgB .container_banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    padding: 0.2em;
+    max-width: 80%;
+  }
+
+  .jiNjgB .container_banner > span {
+    font-size: 10px;
+  }
+
+  .jiNjgB .name_cupom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .jiNjgB .name_cupom > h3 {
+    font-size: 16px;
+    color: rgb(0, 221, 220);
+    animation: shake 1s infinite;
+    margin: 0;
+  }
+
+  .jiNjgB .name_cupom > h5 {
+    font-size: 10px;
+    color: rgb(255, 255, 255);
+    margin: 0;
+  }
+
+  .jiNjgB .name_cupom > h5 > span {
+    margin-right: 5px;
+    margin-left: 3px;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+  }
+
+  @media screen and (min-width: 768px) {
+    .jiNjgB {
+      justify-content: center;
+    }
+    .jiNjgB img {
+      width: 150px;
+    }
+    .jiNjgB .container_banner {
+      display: none;
+    }
+  }
+</style>
  
 <!-- CARROSSEL FUNCIONAL -->
 <div class="carousel">
